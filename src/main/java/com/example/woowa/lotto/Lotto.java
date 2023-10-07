@@ -69,9 +69,11 @@ public class Lotto {
 
         for (int i = 0; i < lottoNumbers.size(); i++) {
             int count = 0;
-            for (int j = 0; j < lottoNumbers.get(i).size(); j++) {
-                if (winnerNumber.get(j).equals(lottoNumbers.get(i).get(j))) {
-                    count++;
+            for (int z = 0; z < winnerNumber.size(); z++) {
+                for (int j = 0; j < lottoNumbers.get(i).size(); j++) {
+                    if (winnerNumber.get(z).equals(lottoNumbers.get(i).get(j))) {
+                        count++;
+                    }
                 }
             }
             if (count == 5) {
@@ -114,7 +116,7 @@ public class Lotto {
         System.out.println("5개 일치 (1,500,000원) - " + (map.get(5) - count) + "개");
         System.out.println("5개 일치, 보너스 볼 일치 (30,000,000원) - " + count + "개");
         System.out.println("6개 일치 (2,000,000,000원) - " + map.get(6) + "개");
-        System.out.println("총 수익률은" + profit + "%입니다.");
+        System.out.printf("총 수익률은 %.1f%% 입니다.%n", profit);
 
 
     }
