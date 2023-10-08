@@ -5,6 +5,8 @@ public class Application {
     public static void main(String[] args) {
         Lotto lotto = Lotto.INSTANCE; // 로또는 싱글턴임을 보장한다.
 
+
+
         InputView input = new InputView();
         Validate validate = new Validate();
         Extract extract = new Extract();
