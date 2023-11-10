@@ -5,8 +5,8 @@ import christmas.view.output.OutPut;
 
 public class DayInput extends Input {
 
-    Validator validator;
-    OutPut outPut;
+    private final Validator validator;
+    private final OutPut outPut;
 
     public DayInput(Validator validator, OutPut outPut) {
         this.validator = validator;
