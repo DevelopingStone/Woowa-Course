@@ -13,7 +13,7 @@ public abstract class Input {
             try {
                 message();
                 data = Console.readLine();
-                validate(data);
+                controller(data);
                 isNotValidInput = false;
             } catch (IllegalArgumentException ex) {
                 OutPut.printErrorMessage(ex.getMessage());
@@ -24,7 +24,7 @@ public abstract class Input {
 
     public abstract void message();
 
-    public abstract void validate(String data);
+    public abstract void controller(String data);
 
 }
 
