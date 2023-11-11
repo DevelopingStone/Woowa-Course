@@ -9,5 +9,4 @@ public class DayOutPut extends OutPut {
         System.out.println(VISITING_INFORMATION_MESSAGE);
     }
 
-
 }
