@@ -1,5 +1,8 @@
 package christmas.model;
 
+import java.util.Arrays;
+import java.util.Objects;
+
 public enum MenuItem {
 
     // 애피타이저
@@ -25,7 +28,9 @@ public enum MenuItem {
     private final MenuCategory category;
     private final String itemName;
     private final int price;
-
+    //    private final boolean weekday;
+    //    private final boolean weekend;
+    //    private final boolean specialDay;
 
     MenuItem(MenuCategory category, String itemName, int price) {
         this.category = category;
@@ -47,12 +52,19 @@ public enum MenuItem {
     }
 
     public static boolean checkForInvalidOrders(String orderSheet) {
-        for (MenuItem menuItem : values()) {
-            if (menuItem.getItemName().equals(orderSheet)) {
+        for (MenuItem menuItem : MenuItem.values()) {
+            if (findBeverageByName(orderSheet, menuItem)) {
                 return false;
             }
         }
         return true;
+    }
+
+    private static boolean findBeverageByName(String orderSheet, MenuItem menuItem) {
+        if(menuItem.getCategory()==MenuCategory.BEVERAGE){
+            return Objects.equals(menuItem.getItemName(), orderSheet);
+        }
+        return false;
     }
 
     public MenuCategory getCategory() {

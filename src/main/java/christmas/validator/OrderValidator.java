@@ -51,10 +51,11 @@ public class OrderValidator {
         long count = orderItems.keySet().stream()
                 .filter(MenuItem::isItemNameInMenu)
                 .count();
-        if (count == 0) {
+        if (count != orderItems.size()) {
             throw new IllegalArgumentException(INVALID_ORDER);
         }
     }
+
 
     public void checkDrinkOrderDuplicated(Map<String, Integer> orderSheet) {
         long count = orderSheet.keySet().stream()

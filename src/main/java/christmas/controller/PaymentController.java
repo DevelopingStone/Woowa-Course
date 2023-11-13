@@ -21,6 +21,6 @@ public class PaymentController {
     }
 
     public void showDiscounts(){
-
+        System.out.println("횡짜");
     }
 }
