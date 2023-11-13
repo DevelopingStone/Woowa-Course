@@ -39,6 +39,4 @@ public class OrderParser {
             orderSheet.put(foodName, count);
         }
     }
-
-
 }

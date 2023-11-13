@@ -1,7 +1,6 @@
 package christmas.view.input;
 
 import christmas.controller.Controller;
-import christmas.validator.Validator;
 import christmas.view.output.OutPut;
 
 public class OrderInput extends Input {
@@ -16,7 +15,7 @@ public class OrderInput extends Input {
 
     @Override
     public void message() {
-        outPut.informationMessage();
+        outPut.showInformation();
     }
 
     @Override

@@ -1,7 +1,7 @@
 package christmas.validator;
 
 
-import camp.nextstep.edu.missionutils.Console;
+import christmas.model.MenuItem;
 import java.util.List;
 import java.util.Map;
 
@@ -9,8 +9,14 @@ public class OrderValidator {
 
     private static final String NUMBER_REGULAR_EXPRESSION = "^[1-9]+$";
     private static final String STRING_REGULAR_EXPRESSION = "^[0-9]+$";
-    private final String INVALID_ORDER = "유효하지 않은 주문입니다. 다시 입력해 주세요.";
     private static final String INVALID_STATIC_ORDER = "유효하지 않은 주문입니다. 다시 입력해 주세요.";
+    private final String INVALID_ORDER = "유효하지 않은 주문입니다. 다시 입력해 주세요.";
+
+    public static void throwIsNotNumber(String input) {
+        if (!input.matches((NUMBER_REGULAR_EXPRESSION))) {
+            throw new IllegalArgumentException(INVALID_STATIC_ORDER);
+        }
+    }
 
     public void validate(List<String> splitData, Map<String, Integer> separateByKeyValue) {
         duplicateVerification(splitData, separateByKeyValue);
@@ -32,13 +38,6 @@ public class OrderValidator {
         }
     }
 
-    public static void throwIsNotNumber(String input) {
-        if (!input.matches((NUMBER_REGULAR_EXPRESSION))) {
-            throw new IllegalArgumentException(INVALID_STATIC_ORDER);
-
-        }
-    }
-
     public void throwIsNotString(Map<String, Integer> input) {
         for (Map.Entry<String, Integer> inputKey : input.entrySet()) {
             if (inputKey.getKey().matches((STRING_REGULAR_EXPRESSION))) {
@@ -47,4 +46,12 @@ public class OrderValidator {
         }
     }
 
+    public void throwIsNotMenu(Map<String, Integer> orderItems) {
+        long count = orderItems.keySet().stream()
+                .filter(MenuItem::isItemNameInMenu)
+                .count();
+        if (count == 0) {
+            throw new IllegalArgumentException(INVALID_ORDER);
+        }
+    }
 }
