@@ -20,6 +20,6 @@ public class DayInput extends Input {
 
     @Override
     public void controller(String data) {
-        controller.validate(data);
+        controller.runController(data);
     }
 }

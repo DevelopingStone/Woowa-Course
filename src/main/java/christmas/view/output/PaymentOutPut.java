@@ -10,13 +10,14 @@ public class PaymentOutPut extends OutPut {
 
     @Override
     public void showInformation() {
+        System.out.println();
         System.out.println(ORDER_MENU);
     }
 
     public void showMenu(Map<String, Integer> orderItems, String day) {
         System.out.printf(DATE_OUTPUT, day);
         System.out.println();
-        System.out.println();
+        showInformation();
         for (Map.Entry<String, Integer> orderItem : orderItems.entrySet()) {
             System.out.printf(ORDER_MENU_OUTPUT, orderItem.getKey(), orderItem.getValue());
             System.out.println();

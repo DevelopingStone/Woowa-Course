@@ -16,10 +16,14 @@ public class OrderController implements Controller {
     }
 
     @Override
-    public void validate(String data) {
+    public void runController(String data) {
         parserResult orderParser = parser(data);
+        validate(orderParser);
+    }
+
+    private void validate(parserResult orderParser) {
         orderValidator.validate(orderParser.dataSplitComma(), orderParser.dataSplitHyphen());
-        this.orderItems = orderParser.dataSplitHyphen();
+        orderItems = orderParser.dataSplitHyphen();
         orderValidator.throwIsNotMenu(orderItems);
     }
 

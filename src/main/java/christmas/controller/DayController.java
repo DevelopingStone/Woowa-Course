@@ -11,7 +11,7 @@ public class DayController implements Controller {
     }
 
     @Override
-    public void validate(String data) {
+    public void runController(String data) {
         validator.validate(data);
     }
 }

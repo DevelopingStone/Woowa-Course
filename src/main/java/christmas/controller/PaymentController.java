@@ -16,7 +16,11 @@ public class PaymentController {
     }
 
     public void showOrderMenu() {
-        paymentOutPut.showInformation();
         paymentOutPut.showMenu(orderItems, day);
+        showDiscounts();
+    }
+
+    public void showDiscounts(){
+
     }
 }
