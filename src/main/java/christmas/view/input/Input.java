@@ -25,7 +25,6 @@ public abstract class Input {
     public abstract void message();
 
     public abstract void controller(String data);
-
 }
 
 

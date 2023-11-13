@@ -8,6 +8,5 @@ public abstract class OutPut {
         System.out.println(ERROR + ex);
     }
 
-    public abstract void informationMessage();
-
+    public abstract void showInformation();
 }

@@ -1,7 +1,6 @@
 package christmas.view.input;
 
 import christmas.controller.Controller;
-import christmas.validator.Validator;
 import christmas.view.output.OutPut;
 
 public class DayInput extends Input {
@@ -16,12 +15,11 @@ public class DayInput extends Input {
 
     @Override
     public void message() {
-        outPut.informationMessage();
+        outPut.showInformation();
     }
 
     @Override
     public void controller(String data) {
         controller.validate(data);
     }
-
 }

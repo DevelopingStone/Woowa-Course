@@ -25,6 +25,4 @@ public class DayValidator implements Validator {
             throw new IllegalArgumentException(INVALID_DATE);
         }
     }
-
-
 }
