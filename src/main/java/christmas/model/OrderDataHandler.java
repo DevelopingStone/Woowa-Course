@@ -7,7 +7,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class OrderParser {
+public class OrderDataHandler {
 
     private static final String DISCERN_COMMA = ",";
     private static final String HYPHEN = "-";

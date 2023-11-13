@@ -1,24 +1,25 @@
 package christmas.controller;
 
-import christmas.model.OrderParser;
+import christmas.model.OrderDataHandler;
 import christmas.validator.OrderValidator;
 import java.util.List;
 import java.util.Map;
 
 public class OrderController implements Controller {
     private final OrderValidator orderValidator;
-    private final OrderParser orderParser;
+    public OrderDataHandler orderDataHandler;
     private Map<String, Integer> orderItems;
 
-    public OrderController(OrderValidator orderValidator, OrderParser orderParser) {
+    public OrderController(OrderValidator orderValidator, OrderDataHandler orderDataHandler) {
         this.orderValidator = orderValidator;
-        this.orderParser = orderParser;
+        this.orderDataHandler = orderDataHandler;
     }
 
     @Override
     public void runController(String data) {
         parserResult orderParser = parser(data);
         validate(orderParser);
+        orderValidator.checkDrinkOrderDuplicated(orderItems);
     }
 
     private void validate(parserResult orderParser) {
@@ -28,8 +29,8 @@ public class OrderController implements Controller {
     }
 
     private parserResult parser(String data) {
-        List<String> dataSplitComma = orderParser.splitComma(data);
-        Map<String, Integer> dataSplitHyphen = orderParser.splitHyphen(dataSplitComma);
+        List<String> dataSplitComma = orderDataHandler.splitComma(data);
+        Map<String, Integer> dataSplitHyphen = orderDataHandler.splitHyphen(dataSplitComma);
         return new parserResult(dataSplitComma, dataSplitHyphen);
     }
 

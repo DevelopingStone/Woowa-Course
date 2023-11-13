@@ -11,6 +11,7 @@ public class OrderValidator {
     private static final String STRING_REGULAR_EXPRESSION = "^[0-9]+$";
     private static final String INVALID_STATIC_ORDER = "유효하지 않은 주문입니다. 다시 입력해 주세요.";
     private final String INVALID_ORDER = "유효하지 않은 주문입니다. 다시 입력해 주세요.";
+    private final String ONLY_DRINKS_ORDER = "주문할 수 없음";
 
     public static void throwIsNotNumber(String input) {
         if (!input.matches((NUMBER_REGULAR_EXPRESSION))) {
@@ -52,6 +53,15 @@ public class OrderValidator {
                 .count();
         if (count == 0) {
             throw new IllegalArgumentException(INVALID_ORDER);
+        }
+    }
+
+    public void checkDrinkOrderDuplicated(Map<String, Integer> orderSheet) {
+        long count = orderSheet.keySet().stream()
+                .filter(MenuItem::checkForInvalidOrders)
+                .count();
+        if (count == 0) {
+            throw new IllegalArgumentException(ONLY_DRINKS_ORDER);
         }
     }
 }

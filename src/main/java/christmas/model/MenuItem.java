@@ -46,6 +46,15 @@ public enum MenuItem {
         return false;
     }
 
+    public static boolean checkForInvalidOrders(String orderSheet) {
+        for (MenuItem menuItem : values()) {
+            if (menuItem.getItemName().equals(orderSheet)) {
+                return false;
+            }
+        }
+        return true;
+    }
+
     public MenuCategory getCategory() {
         return category;
     }
