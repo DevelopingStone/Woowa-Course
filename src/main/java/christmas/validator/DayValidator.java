@@ -2,7 +2,7 @@ package christmas.validator;
 
 public class DayValidator implements Validator {
 
-    private final static String INVALID_DATE = "유효하지 않은 날짜입니다. 다시 입력해 주세요.";
+    private final static String INVALID_DATE = " 유효하지 않은 날짜입니다. 다시 입력해 주세요.";
     private final static String NUMBER_REGULAR_EXPRESSION = "^[0-9]+$";
     private final static int DAY_NUM_MIN_RANGE = 1;
     private final static int DAY_NUM_MAX_RANGE = 31;

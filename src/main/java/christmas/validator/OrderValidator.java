@@ -9,8 +9,8 @@ public class OrderValidator {
 
     private static final String NUMBER_REGULAR_EXPRESSION = "^[1-9]+$";
     private static final String STRING_REGULAR_EXPRESSION = "^[0-9]+$";
-    private static final String INVALID_STATIC_ORDER = "유효하지 않은 주문입니다. 다시 입력해 주세요.";
-    private final String INVALID_ORDER = "유효하지 않은 주문입니다. 다시 입력해 주세요.";
+    private static final String INVALID_STATIC_ORDER = " 유효하지 않은 주문입니다. 다시 입력해 주세요.";
+    private final String INVALID_ORDER = " 유효하지 않은 주문입니다. 다시 입력해 주세요.";
 
     public static void throwIsNotNumber(String input) {
         if (!input.matches((NUMBER_REGULAR_EXPRESSION))) {

@@ -37,7 +37,6 @@ public class OrderDiscountController {
     public void hasGift(int totalPrice) {
         boolean hasGift = orderDiscountCalculator.calculateHasGift(totalPrice);
         orderDiscountOutPut.showHasGift(hasGift);
-        System.out.println("으쌰");
     }
 
 }
