@@ -14,7 +14,8 @@ public class OrderDiscountController {
     private final OrderDiscountOutPut orderDiscountOutPut;
 
     public OrderDiscountController(PaymentOutPut paymentOutPut, Map<String, Integer> orderItems, String day,
-                                   OrderDiscountCalculator orderDiscountCalculator, OrderDiscountOutPut orderDiscountOutPut) {
+                                   OrderDiscountCalculator orderDiscountCalculator,
+                                   OrderDiscountOutPut orderDiscountOutPut) {
         this.paymentOutPut = paymentOutPut;
         this.orderItems = orderItems;
         this.day = day;
@@ -30,6 +31,13 @@ public class OrderDiscountController {
     public void TotalOrderAmount() {
         int totalPrice = orderDiscountCalculator.calculateTotalOrder();
         orderDiscountOutPut.showTotalOrderAmount(totalPrice);
+        hasGift(totalPrice);
+    }
+
+    public void hasGift(int totalPrice) {
+        boolean hasGift = orderDiscountCalculator.calculateHasGift(totalPrice);
+        orderDiscountOutPut.showHasGift(hasGift);
         System.out.println("으쌰");
     }
+
 }
