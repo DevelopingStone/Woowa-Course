@@ -14,7 +14,7 @@ public class PaymentOutPut extends OutPut {
         System.out.println(ORDER_MENU);
     }
 
-    public void showMenu(Map<String, Integer> orderItems, String day) {
+    public void showOrderList(Map<String, Integer> orderItems, String day) {
         System.out.printf(DATE_OUTPUT, day);
         System.out.println();
         showInformation();

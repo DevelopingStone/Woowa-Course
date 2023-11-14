@@ -1,6 +1,6 @@
 package christmas.controller;
 
-import christmas.model.OrderDataHandler;
+import christmas.model.Order.OrderDataHandler;
 import christmas.validator.OrderValidator;
 import java.util.List;
 import java.util.Map;
