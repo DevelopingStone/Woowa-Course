@@ -20,6 +20,7 @@ public class OrderController implements Controller {
         parserResult orderParser = parser(data);
         validate(orderParser);
         orderValidator.checkDrinkOrderDuplicated(orderItems);
+        orderValidator.throwExcessiveOrder(orderItems);
     }
 
     private void validate(parserResult orderParser) {

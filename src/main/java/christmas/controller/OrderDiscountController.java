@@ -30,5 +30,6 @@ public class OrderDiscountController {
     public void TotalOrderAmount() {
         int totalPrice = orderDiscountCalculator.calculateTotalOrder();
         orderDiscountOutPut.showTotalOrderAmount(totalPrice);
+        System.out.println("으쌰");
     }
 }

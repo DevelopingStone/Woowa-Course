@@ -11,7 +11,8 @@ public class OrderValidator {
     private static final String STRING_REGULAR_EXPRESSION = "^[0-9]+$";
     private static final String INVALID_STATIC_ORDER = "유효하지 않은 주문입니다. 다시 입력해 주세요.";
     private final String INVALID_ORDER = "유효하지 않은 주문입니다. 다시 입력해 주세요.";
-    private final String ONLY_DRINKS_ORDER = "주문할 수 없음";
+    private final String ONLY_DRINKS_ORDER = "음료만 주문할 수 없습니다.";
+    private final String EXCESSIVE_ORDER = "20개이상 주문할수 없습니다.";
 
     public static void throwIsNotNumber(String input) {
         if (!input.matches((NUMBER_REGULAR_EXPRESSION))) {
@@ -63,6 +64,16 @@ public class OrderValidator {
                 .count();
         if (count == 0) {
             throw new IllegalArgumentException(ONLY_DRINKS_ORDER);
+        }
+    }
+
+    public void throwExcessiveOrder(Map<String, Integer> orderItems) {
+        int totalOrderItems = 0;
+        for (Map.Entry<String, Integer> orderItem : orderItems.entrySet()) {
+            totalOrderItems += orderItem.getValue();
+        }
+        if (totalOrderItems >= 20) {
+            throw new IllegalArgumentException(EXCESSIVE_ORDER);
         }
     }
 }
