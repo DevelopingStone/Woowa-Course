@@ -1,5 +1,6 @@
 package christmas.model.Menu;
 
+import java.util.Arrays;
 import java.util.Objects;
 
 public enum MenuItem {
@@ -75,6 +76,19 @@ public enum MenuItem {
         }
         return sumPrice;
     }
+
+    public static int giveDayDiscount(String orderItem, int count, int day) {
+
+        return Arrays.stream(values())
+                .filter(itemPrice -> orderItem.equals(itemPrice.itemName))
+                .filter(itemPrice -> (day % 7 == 1 || day % 7 == 2) && itemPrice.isWeekendDiscount() ||
+                        (day % 7 != 1 && day % 7 != 2) && itemPrice.isWeekdayDiscount())
+                .mapToInt(itemPrice -> 2023 * count)
+                .sum();
+    }
+
+
+
 
     public boolean isWeekdayDiscount() {
         return weekdayDiscount;
