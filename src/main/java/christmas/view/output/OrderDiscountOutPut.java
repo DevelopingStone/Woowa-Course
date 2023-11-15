@@ -78,6 +78,19 @@ public class OrderDiscountOutPut {
         }
     }
 
+    public void showExpectedDiscount(int totalPrice, int benefitsMoney, boolean hasGift) {
+        if (hasGift) {
+            System.out.println();
+            System.out.println("<할인 후 예상 결제 금액>");
+            System.out.printf(decimalFormat.format(totalPrice - benefitsMoney + 25000));
+        }
+        if (!hasGift) {
+            System.out.println();
+            System.out.println("<할인 후 예상 결제 금액>");
+            System.out.printf(decimalFormat.format(totalPrice - benefitsMoney));
+        }
+    }
+
 
 
 
