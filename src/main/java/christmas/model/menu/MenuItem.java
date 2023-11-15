@@ -1,8 +1,7 @@
-package christmas.model.Menu;
+package christmas.model.menu;
 
 import java.util.Arrays;
 import java.util.Objects;
-import java.util.stream.IntStream;
 
 public enum MenuItem {
 
@@ -78,28 +77,66 @@ public enum MenuItem {
         return sumPrice;
     }
 
-    public static int giveDayDiscount(String orderItem, int count, int day) {
+//    public static int giveDayDiscount(String orderItem, int count, int day) {
+//
+//        return Arrays.stream(values())
+//                .filter(itemPrice -> orderItem.equals(itemPrice.itemName))
+//                .filter(itemPrice -> (day % 7 == 1 || day % 7 == 2) && itemPrice.isWeekendDiscount() ||
+//                        (day % 7 != 1 && day % 7 != 2) && itemPrice.isWeekdayDiscount())
+//                .mapToInt(itemPrice -> 2023 * count)
+//                .sum();
+//    }
 
+    public static int giveDayDiscount(String orderItem, int count, int day) {
         return Arrays.stream(values())
                 .filter(itemPrice -> orderItem.equals(itemPrice.itemName))
-                .filter(itemPrice -> (day % 7 == 1 || day % 7 == 2) && itemPrice.isWeekendDiscount() ||
-                        (day % 7 != 1 && day % 7 != 2) && itemPrice.isWeekdayDiscount())
+                .filter(itemPrice -> {
+                    DiscountDay discountDay = getDiscountDay(day);
+                    return (discountDay == DiscountDay.WEEKEND && itemPrice.isWeekendDiscount()) ||
+                            (discountDay == DiscountDay.WEEKDAY && itemPrice.isWeekdayDiscount());
+                })
                 .mapToInt(itemPrice -> 2023 * count)
                 .sum();
     }
 
-    public static String giveDay(int day) {
-        if (IntStream.of(1, 2).anyMatch(d -> day % 7 == d)) {
-            return "주말";
+    private static DiscountDay getDiscountDay(int day) {
+        for (DiscountDay discountDay : DiscountDay.values()) {
+            if (discountDay.containsDay(day)) {
+                return discountDay;
+            }
         }
-        if (IntStream.of(3, 4, 5, 6, 0).anyMatch(d -> day % 7 == d)) {
-            return "평일";
+        return null;
+    }
+
+
+//    public static String giveDay(int day) {
+//        if (IntStream.of(1, 2).anyMatch(d -> day % 7 == d)) {
+//            return "주말";
+//        }
+//        if (IntStream.of(3, 4, 5, 6, 0).anyMatch(d -> day % 7 == d)) {
+//            return "평일";
+//        }
+//        return null;
+//    }
+//
+//    public static int giveSpecialDiscount(int day) {
+//        if (day % 7 == 3 || day == 25) {
+//            return 1000;
+//        }
+//        return 0;
+//    }
+
+    public static String giveDay(int day) {
+        for (DiscountDay discountDay : DiscountDay.values()) {
+            if (discountDay.containsDay(day)) {
+                return discountDay.getDescription();
+            }
         }
         return null;
     }
 
     public static int giveSpecialDiscount(int day) {
-        if (day % 7 == 3 || day == 25) {
+        if (DiscountDay.SPECIAL_DAY.containsDay(day)) {
             return 1000;
         }
         return 0;

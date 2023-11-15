@@ -1,4 +1,4 @@
-package christmas.model.Order;
+package christmas.model.order;
 
 
 import christmas.validator.OrderValidator;

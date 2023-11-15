@@ -1,6 +1,6 @@
-package christmas.model.Order;
+package christmas.model.order;
 
-import christmas.model.Menu.MenuItem;
+import christmas.model.menu.MenuItem;
 import java.util.Map;
 
 public class OrderDiscountCalculator {
@@ -33,13 +33,4 @@ public class OrderDiscountCalculator {
         int HAS_GIFT = 120_000;
         return totalPrice >= HAS_GIFT;
     }
-
-    public int calculateExpectedDiscount(int benefitsMoney, int totalPrice) {
-        if (totalPrice >= 120000) {
-            return 25000;
-        }
-        return 0;
-    }
-
-
 }
