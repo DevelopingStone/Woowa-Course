@@ -34,5 +34,12 @@ public class OrderDiscountCalculator {
         return totalPrice >= HAS_GIFT;
     }
 
+    public int calculateExpectedDiscount(int benefitsMoney, int totalPrice) {
+        if (totalPrice >= 120000) {
+            return 25000;
+        }
+        return 0;
+    }
+
 
 }
