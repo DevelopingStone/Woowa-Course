@@ -12,10 +12,9 @@ public class OrderDiscountOutPut {
     private final static String NONE = "없음";
     private final static String SHOW_BENEFIT = "<혜택 내역>";
     DecimalFormat decimalFormat = new DecimalFormat(DIVIDED_THOUSAND_DIVIDED);
-    private int totalPrice;
+    int benefit_count = 0;
 
     public void showTotalOrderAmount(int totalPrice) {
-        this.totalPrice = totalPrice;
         System.out.println(NEW_LINE + TOTAL_ORDER_AMOUNT_BEFORE_DISCOUNT);
         System.out.println(decimalFormat.format(totalPrice));
     }
@@ -35,9 +34,26 @@ public class OrderDiscountOutPut {
 
     public void showChristmasDiscount(int christmasDiscount) {
         if (christmasDiscount != 0) {
-            System.out.printf("크리스마스 디데이 할인: %s", decimalFormat.format(christmasDiscount));
+            System.out.printf("크리스마스 디데이 할인: -%s", decimalFormat.format(christmasDiscount));
+            benefit_count++;
         }
     }
+
+    public void showDayDiscount(String day, int dayDiscount) {
+        if (dayDiscount != 0) {
+            System.out.printf(NEW_LINE + "%s 할인: -%s", day, decimalFormat.format(dayDiscount));
+            benefit_count++;
+        }
+    }
+
+    public void showSpecialDiscount(int specialDiscount) {
+        if (specialDiscount != 0) {
+            System.out.printf(NEW_LINE + "특별 할인: -%s", decimalFormat.format(specialDiscount));
+            benefit_count++;
+        }
+    }
+
+
 
 
 }
