@@ -1,4 +1,4 @@
-package christmas.model.menu;
+package christmas.model.discount;
 
 public enum DiscountDay {
 

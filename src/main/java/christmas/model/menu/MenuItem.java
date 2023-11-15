@@ -1,5 +1,6 @@
 package christmas.model.menu;
 
+import christmas.model.discount.DiscountDay;
 import java.util.Arrays;
 import java.util.Objects;
 
