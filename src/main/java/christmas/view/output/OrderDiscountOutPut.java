@@ -53,6 +53,31 @@ public class OrderDiscountOutPut {
         }
     }
 
+    public void showPresentationEvent(boolean hasGift) {
+        if (hasGift) {
+            System.out.printf(NEW_LINE + "증정 이벤트: -25,000원");
+            benefit_count++;
+        }
+    }
+
+    public void showTotalBenefitsMoney(int TotalBenefitsMoney) {
+        if (benefit_count == 0) {
+            System.out.println("없음");
+        }
+        if (TotalBenefitsMoney != 0) {
+            System.out.println();
+            System.out.println();
+            System.out.println("<총혜택 금액>");
+            System.out.printf("-%s", decimalFormat.format(TotalBenefitsMoney));
+            System.out.println();
+        }
+        if (TotalBenefitsMoney == 0) {
+            System.out.println();
+            System.out.println("<총혜택 금액>");
+            System.out.println("0원");
+        }
+    }
+
 
 
 
