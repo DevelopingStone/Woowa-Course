@@ -4,111 +4,101 @@ import java.text.DecimalFormat;
 
 public class OrderDiscountOutPut {
 
-    private static final String NEW_LINE = System.lineSeparator();
-    private final static String DIVIDED_THOUSAND_DIVIDED = "#,###원";
-    private final static String TOTAL_ORDER_AMOUNT_BEFORE_DISCOUNT = "<할인 전 총주문 금액>";
-    private final static String GIFT_MENU = "<증정 메뉴>";
-    private final static String CHAMPAGNE = "샴페인 1개";
-    private final static String NONE = "없음";
-    private final static String SHOW_BENEFIT = "<혜택 내역>";
-    DecimalFormat decimalFormat = new DecimalFormat(DIVIDED_THOUSAND_DIVIDED);
-    int benefit_count = 0;
+    DecimalFormat decimalFormat = new DecimalFormat(OrderDiscount.DIVIDED_THOUSAND_DIVIDED.message());
+    int numberOfBenefits = 0;
 
     public void showTotalOrderAmount(int totalPrice) {
-        System.out.println(NEW_LINE + TOTAL_ORDER_AMOUNT_BEFORE_DISCOUNT);
+        System.out.println(
+                OrderDiscount.NEW_LINE.message() + OrderDiscount.TOTAL_ORDER_AMOUNT_BEFORE_DISCOUNT.message());
         System.out.println(decimalFormat.format(totalPrice));
     }
 
     public void showHasGift(Boolean hasGift) {
         if (hasGift) {
-            System.out.println(NEW_LINE + GIFT_MENU + NEW_LINE + CHAMPAGNE);
+            System.out.println(OrderDiscount.NEW_LINE.message() + OrderDiscount.GIFT_MENU.message()
+                    + OrderDiscount.NEW_LINE.message() + OrderDiscount.CHAMPAGNE.message());
         }
         if (!hasGift) {
-            System.out.println(NEW_LINE + GIFT_MENU + NEW_LINE + NONE);
+            System.out.println(OrderDiscount.NEW_LINE.message() + OrderDiscount.GIFT_MENU.message()
+                    + OrderDiscount.NEW_LINE.message() + OrderDiscount.NONE.message());
         }
     }
 
     public void showBenefitsDetails() {
-        System.out.println(NEW_LINE + SHOW_BENEFIT);
+        System.out.println(OrderDiscount.NEW_LINE.message() + OrderDiscount.SHOW_BENEFIT.message());
     }
 
     public void showChristmasDiscount(int christmasDiscount) {
-        if (christmasDiscount != 0) {
-            System.out.printf("크리스마스 디데이 할인: -%s", decimalFormat.format(christmasDiscount));
-            benefit_count++;
+        if (christmasDiscount != OrderDiscountNumber.ZERO_MONEY.num()) {
+            System.out.printf(OrderDiscount.CHRISTMAS_DEAL_DISCOUNT.message(), decimalFormat.format(christmasDiscount));
+            numberOfBenefits++;
         }
     }
 
     public void showDayDiscount(String day, int dayDiscount) {
-        if (dayDiscount != 0) {
-            System.out.printf(NEW_LINE + "%s 할인: -%s", day, decimalFormat.format(dayDiscount));
-            benefit_count++;
+        if (dayDiscount != OrderDiscountNumber.ZERO_MONEY.num()) {
+            System.out.printf(OrderDiscount.NEW_LINE.message() + OrderDiscount.DISCOUNT_FORMAT.message()
+                            + OrderDiscount.DISCOUNT.message() + OrderDiscount.DISCOUNT_MINUS_FORMAT.message(), day,
+                    decimalFormat.format(dayDiscount));
+            numberOfBenefits++;
         }
     }
 
     public void showSpecialDiscount(int specialDiscount) {
-        if (specialDiscount != 0) {
-            System.out.printf(NEW_LINE + "특별 할인: -%s", decimalFormat.format(specialDiscount));
-            benefit_count++;
+        if (specialDiscount != OrderDiscountNumber.ZERO_MONEY.num()) {
+            System.out.printf(OrderDiscount.NEW_LINE.message() + OrderDiscount.SPECIAL_DISCOUNT.message()
+                    + OrderDiscount.DISCOUNT_MINUS_FORMAT.message(), decimalFormat.format(specialDiscount));
+            numberOfBenefits++;
         }
     }
 
     public void showPresentationEvent(boolean hasGift) {
         if (hasGift) {
-            System.out.printf(NEW_LINE + "증정 이벤트: -25,000원");
-            benefit_count++;
+            System.out.printf(OrderDiscount.NEW_LINE.message() + OrderDiscount.PRESENTATION_EVENT.message());
+            numberOfBenefits++;
         }
     }
 
     public void showTotalBenefitsMoney(int TotalBenefitsMoney) {
-        if (benefit_count == 0) {
-            System.out.println("없음");
+        if (numberOfBenefits == OrderDiscountNumber.ZERO_MONEY.num()) {
+            System.out.println(OrderDiscount.NONE.message());
         }
-        if (TotalBenefitsMoney != 0) {
-            System.out.println();
-            System.out.println();
-            System.out.println("<총혜택 금액>");
-            System.out.printf("-%s", decimalFormat.format(TotalBenefitsMoney));
-            System.out.println();
+        if (TotalBenefitsMoney != OrderDiscountNumber.ZERO_MONEY.num()) {
+            System.out.println(OrderDiscount.NEW_LINE.message() + OrderDiscount.NEW_LINE.message()
+                    + OrderDiscount.TOTAL_BENEFITS_MONEY.message());
+            System.out.printf(OrderDiscount.DISCOUNT_MINUS_FORMAT.message(),
+                    decimalFormat.format(TotalBenefitsMoney) + OrderDiscount.NEW_LINE.message());
         }
-        if (TotalBenefitsMoney == 0) {
-            System.out.println();
-            System.out.println("<총혜택 금액>");
-            System.out.println("0원");
+        if (TotalBenefitsMoney == OrderDiscountNumber.ZERO_MONEY.num()) {
+            System.out.println(OrderDiscount.NEW_LINE.message() + OrderDiscount.TOTAL_BENEFITS_MONEY.message()
+                    + OrderDiscount.NEW_LINE.message() + OrderDiscount.ZERO_MONEY.message());
         }
     }
 
     public void showExpectedDiscount(int totalPrice, int benefitsMoney, boolean hasGift) {
         if (hasGift) {
-            System.out.println();
-            System.out.println("<할인 후 예상 결제 금액>");
+            System.out.println(OrderDiscount.NEW_LINE.message() + OrderDiscount.EXPECTED_DISCOUNT.message());
             System.out.printf(decimalFormat.format(totalPrice - benefitsMoney + 25000));
         }
         if (!hasGift) {
-            System.out.println();
-            System.out.println("<할인 후 예상 결제 금액>");
+            System.out.println(OrderDiscount.NEW_LINE.message() + OrderDiscount.EXPECTED_DISCOUNT.message());
             System.out.printf(decimalFormat.format(totalPrice - benefitsMoney));
         }
     }
 
     public void showBadge(int benefitsMoney) {
-        System.out.println();
-        System.out.println();
-        System.out.println("<12월 이벤트 배지>");
-        if (benefitsMoney >= 20000) {
-            System.out.println("산타");
+        System.out.println(OrderDiscount.NEW_LINE.message() + OrderDiscount.NEW_LINE.message() + OrderDiscount.BADGE.message());
+        if (benefitsMoney >= OrderDiscountNumber.BADGE_SANTA.num()) {
+            System.out.println(OrderDiscount.SANTA.message());
             return;
         }
-        if (benefitsMoney >= 10000) {
-            System.out.println("트리");
+        if (benefitsMoney >= OrderDiscountNumber.BADGE_TREE.num()) {
+            System.out.println(OrderDiscount.TREE.message());
             return;
         }
-        if (benefitsMoney >= 5000) {
-            System.out.println("별");
+        if (benefitsMoney >= OrderDiscountNumber.BADGE_STAR.num()) {
+            System.out.println(OrderDiscount.STAR.message());
         }
-        System.out.println("없음");
-
+        System.out.println(OrderDiscount.NONE.message());
     }
-
-
 }
