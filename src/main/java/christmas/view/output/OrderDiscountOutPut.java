@@ -75,19 +75,20 @@ public class OrderDiscountOutPut {
         }
     }
 
-    public void showExpectedDiscount(int totalPrice, int benefitsMoney, boolean hasGift) {
+    public void showExpectedDiscount(int afterDiscount, boolean hasGift) {
         if (hasGift) {
             System.out.println(OrderDiscount.NEW_LINE.message() + OrderDiscount.EXPECTED_DISCOUNT.message());
-            System.out.printf(decimalFormat.format(totalPrice - benefitsMoney + 25000));
+            System.out.printf(decimalFormat.format(afterDiscount + OrderDiscountNumber.CHAMPAGNE.num()));
         }
         if (!hasGift) {
             System.out.println(OrderDiscount.NEW_LINE.message() + OrderDiscount.EXPECTED_DISCOUNT.message());
-            System.out.printf(decimalFormat.format(totalPrice - benefitsMoney));
+            System.out.printf(decimalFormat.format(afterDiscount));
         }
     }
 
     public void showBadge(int benefitsMoney) {
-        System.out.println(OrderDiscount.NEW_LINE.message() + OrderDiscount.NEW_LINE.message() + OrderDiscount.BADGE.message());
+        System.out.println(
+                OrderDiscount.NEW_LINE.message() + OrderDiscount.NEW_LINE.message() + OrderDiscount.BADGE.message());
         if (benefitsMoney >= OrderDiscountNumber.BADGE_SANTA.num()) {
             System.out.println(OrderDiscount.SANTA.message());
             return;

@@ -1,7 +1,7 @@
 package christmas.controller;
 
-import christmas.model.Menu.MenuItem;
-import christmas.model.Order.OrderDiscountCalculator;
+import christmas.model.menu.MenuItem;
+import christmas.model.order.OrderDiscountCalculator;
 import christmas.view.output.OrderDiscountOutPut;
 import christmas.view.output.PaymentOutPut;
 import java.util.Map;
@@ -140,7 +140,7 @@ public class OrderDiscountController {
 
     //    할인후예상결제금액
     public void expectedDiscount() {
-        orderDiscountOutPut.showExpectedDiscount(totalPrice,benefitsMoney,hasGift);
+        orderDiscountOutPut.showExpectedDiscount(totalPrice-benefitsMoney,hasGift);
     }
 
     public void expectedBadge(){
