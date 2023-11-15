@@ -1,7 +1,7 @@
 package christmas.validator;
 
 
-import christmas.model.Menu.MenuItem;
+import christmas.model.menu.MenuItem;
 import java.util.List;
 import java.util.Map;
 
