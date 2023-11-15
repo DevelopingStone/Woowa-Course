@@ -91,7 +91,24 @@ public class OrderDiscountOutPut {
         }
     }
 
+    public void showBadge(int benefitsMoney) {
+        System.out.println();
+        System.out.println();
+        System.out.println("<12월 이벤트 배지>");
+        if (benefitsMoney >= 20000) {
+            System.out.println("산타");
+            return;
+        }
+        if (benefitsMoney >= 10000) {
+            System.out.println("트리");
+            return;
+        }
+        if (benefitsMoney >= 5000) {
+            System.out.println("별");
+        }
+        System.out.println("없음");
 
+    }
 
 
 }
